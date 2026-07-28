@@ -61,11 +61,11 @@ I can't ship this and measure real usage, so this is more "here's what I'd check
 
 Worth being honest that this isn't a conversion or revenue-moving change — it's closer to a satisfaction/retention-adjacent fix. Small friction like this doesn't tank a metric on its own, but it's the kind of thing that quietly adds up to "this app is mildly annoying to use," which matters over time even if it's hard to isolate in a single number.
 
-Full breakdown in `validation-framework.md`.
+Full breakdown in `validation framework.md`.
 
 ## Sources
 
-All the community threads and articles I used to back this up are listed in `research/sources.md`, with links.
+All the community threads and articles I used to back this up are listed in `sources.md`, with links.
 
 ---
 
