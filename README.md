@@ -1,6 +1,6 @@
-# YouTube Music — a small UX audit on playback controls and library clarity
+# YouTube Music — Playback & Discovery Teardown
 
-I use YouTube Music daily, and a couple of small things about it have bugged me for a while. This is a short, self-initiated audit of two of them — not a full app teardown, just two specific problems I could actually dig into properly.
+I use YouTube Music daily, and a couple of small things about it have bugged me for a while. This is a short, self-initiated teardown of two of them — not the whole app, just two specific problems I could actually dig into properly and propose real fixes for.
 
 ## The problems
 
@@ -20,7 +20,7 @@ This one's separate from the icon stuff. A lot of songs exist as multiple versio
 
 - Used the app myself and noted where the confusion actually happened (screenshots in the PDF)
 - Looked for existing discussion of the same issues on Spotify and Deezer's community forums, since none of this is unique to YouTube Music
-- Found that YouTube already made a small fix for part of the icon problem — they added a white dot under the icon for one of the states — which is useful because it means the problem is real enough that the product team already tried to patch it, just not completely
+- Found that YouTube already made a small fix for part of the icon problem — they added a white dot under the icon for one of the states — which tells me the problem is real enough that the product team already tried to patch it, just not completely
 
 ## What I'm proposing
 
@@ -33,7 +33,7 @@ Split the current repeat button into **4 distinct states** instead of 3:
 3. Repeat the song forever
 4. Repeat the whole playlist
 
-And instead of trying to cram all of that meaning into one small icon (which is how we got here in the first place), add a press-and-hold interaction — hold the icon down and it shows you the current state in plain text, like "Repeat: song, 1 more time." No permanent clutter on the player bar, but no more guessing either.
+Instead of cramming all of that meaning into one small icon, which is how we got here in the first place, add a press-and-hold interaction — hold the icon down and it shows you the current state in plain text, like "Repeat: song, 1 more time." No permanent clutter on the player bar, but no more guessing either.
 
 I built this out as an actual clickable mockup rather than just describing it — see `proposed-solution/interactive-mockup.html`. Open it in a browser, click the repeat icon to cycle through the 4 states, and hover over it (or press and hold on mobile) to see the label. There's also a PDF with before/after screenshots in the same folder.
 
@@ -41,7 +41,7 @@ I built this out as an actual clickable mockup rather than just describing it �
 
 Show a small tag next to the track title whenever version metadata is available — "Remix," "Live," "Radio Edit," that kind of thing — so you can tell versions apart without tapping into each one.
 
-The catch is this depends on whether that version info even exists in the backend already. If it does and it's just not being shown, this is a simple display fix. If it doesn't exist yet for a lot of tracks, someone has to go add that metadata at the content/catalog level first, which is a bigger, slower fix involving whoever manages content tagging, not just design or engineering. I think it's worth saying that upfront rather than pretending it's a five-minute change.
+The catch is this depends on whether that version info even exists in the backend already. If it does and it's just not being shown, this is a simple display fix. If it doesn't exist for a lot of tracks yet, someone has to go add that metadata at the content/catalog level first, which is a bigger, slower fix involving whoever manages content tagging, not just design or engineering. Worth saying that upfront rather than pretending it's a five-minute change.
 
 There's also a smaller trade-off worth naming: if every version gets its own visible tag, search results could get more cluttered, not less. So I'd default to showing the most-played version first, with other versions tucked behind something like "see other versions" instead of listing all of them flat.
 
@@ -51,13 +51,17 @@ I considered that first, honestly. But if repeat-one is fundamentally ambiguous 
 
 ## How I'd actually check if any of this works
 
-I can't ship this and measure real usage, so instead, here's how I'd validate it if I could:
-- Sit a handful of people down, ask them to identify the current repeat state without explanation, before and after the change, and see if accuracy improves
-- Check if community complaint threads about repeat mode confusion (the kind I found while researching this) drop off after a change like this ships
-- Time how long it takes someone to confirm the state using the press-and-hold — if it's not noticeably faster than the current tap-and-guess approach, the fix isn't actually working
-- For the title/version tags, check whether people mistakenly re-save or re-search for a song they already have less often once tags are visible
+I can't ship this and measure real usage, so this is more "here's what I'd check if I could" than actual results. Roughly:
 
-More detail on this in `validation-framework.md`.
+- Test whether people can actually tell the 4 repeat states apart at a glance, and whether that's a meaningful jump over the current 3-state version, not just a marginal one
+- Check if community complaint threads about repeat-mode confusion (the kind I found while researching this) actually drop off after a change like this ships, normalized against active users rather than raw counts
+- Time how long it takes someone to confirm the state using press-and-hold versus the current tap-and-guess approach
+- For the title/version tags, check whether people mistakenly re-save or re-search for a song they already have, less often once tags are visible
+- Also check what this might break — like whether the press-and-hold gesture slows down casual use for people who never cared about the state, or whether version tags make search feel more cluttered for people who never noticed duplicates in the first place
+
+Worth being honest that this isn't a conversion or revenue-moving change — it's closer to a satisfaction/retention-adjacent fix. Small friction like this doesn't tank a metric on its own, but it's the kind of thing that quietly adds up to "this app is mildly annoying to use," which matters over time even if it's hard to isolate in a single number.
+
+Full breakdown in `validation-framework.md`.
 
 ## Sources
 
