@@ -35,7 +35,7 @@ Split the current repeat button into **4 distinct states** instead of 3:
 
 Instead of cramming all of that meaning into one small icon, which is how we got here in the first place, add a press-and-hold interaction — hold the icon down and it shows you the current state in plain text, like "Repeat: song, 1 more time." No permanent clutter on the player bar, but no more guessing either.
 
-I built this out as an actual clickable mockup rather than just describing it — see `proposed-solution/interactive-mockup.html`. Open it in a browser, click the repeat icon to cycle through the 4 states, and hover over it (or press and hold on mobile) to see the label. There's also a PDF with before/after screenshots in the same folder.
+I built this out as an actual clickable mockup rather than just describing it — see `proposed solution/prototype.html`. Open it in a browser, click the repeat icon to cycle through the 4 states, and hover over it (or press and hold on mobile) to see the label. There's also a PDF with before/after screenshots in the same folder.
 
 ### For duplicate/confusing titles
 
@@ -61,7 +61,7 @@ I can't ship this and measure real usage, so this is more "here's what I'd check
 
 Worth being honest that this isn't a conversion or revenue-moving change — it's closer to a satisfaction/retention-adjacent fix. Small friction like this doesn't tank a metric on its own, but it's the kind of thing that quietly adds up to "this app is mildly annoying to use," which matters over time even if it's hard to isolate in a single number.
 
-Full breakdown in `validation framework.md`.
+Full breakdown in `Validation.md`.
 
 ## Sources
 
